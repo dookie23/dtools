@@ -1,0 +1,27 @@
+{
+  "name": "dtools",
+  "version": "0.0.1",
+  "description": "A set of tools to use in your scripts. Fast and easy!",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dookie23/dtools.git"
+  },
+  "keywords": [
+    "swissknife",
+    "all-in-one"
+  ],
+  "author": "Agustín Cañas <agustincanas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dookie23/dtools/issues"
+  },
+  "homepage": "https://github.com/dookie23/dtools",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4"
+  }
+}
