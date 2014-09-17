@@ -15,7 +15,7 @@ describe('#completeZerosLeft', function() {
 });
 
 
-describe('#randomInt', function() {
+describe('randomInt', function() {
   it('generates an integer in range [0,10]', function() {
     out = dtools.randomInt(0,10);
     out.should.least(0);
@@ -26,5 +26,27 @@ describe('#randomInt', function() {
     out = dtools.randomInt(2,4);
     out.should.least(2);
     out.should.most(4);
+  });
+});
+
+
+describe('numberArray', function() {
+  it('generates the array [2013,2014,2015]', function() {
+    out = dtools.numberArray(2013,3);
+    out[0].should.equal(2013);
+    out[1].should.equal(2014);
+    out[2].should.equal(2015);
+  });
+
+  it('generates the array [2015,2014,2013]', function() {
+    out = dtools.numberArray(2013,3, true);
+    out[0].should.equal(2015);
+    out[1].should.equal(2014);
+    out[2].should.equal(2013);
+  });
+
+  it('generates an array of 100 consecutive numbers', function() {
+    out = dtools.numberArray(1,100);
+    out.length.should.equal(100);
   });
 });

@@ -24,6 +24,25 @@ module.exports = {
      */
     randomInt: function(min, max) {
         return min + Math.round(Math.random() * (max - min));
+    },
+
+    /**
+    *
+    * Generates an array with consecutive numbers from start to start+n-1
+    *
+    * @param {Integer} The first item of the array
+    * @param {Integer} Array length
+    * @param {Boolean} Descendent direction
+    * return {Array} An array with number items from start to start+n-1. If desc == true, the array will be sort in descendent order.
+    */
+    numberArray: function(start, n, desc) {
+        var r = [];
+        for (var i=start;i<start+n;i++) {
+            if (!desc) r.push(i);
+            else r.unshift(i);
+        }
+        return r;
     }
+
 
 }
