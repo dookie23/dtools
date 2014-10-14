@@ -14,6 +14,7 @@ A set of useful tools.
 	dtools.randomInt(1,14);
 	dtools.completeZerosLeft(2,4);
 	dtools.numberArray(2013,3,true);
+	dtools.friendlyDateRepresentation("2014-10-23");
 
 ## Tests
 
@@ -23,3 +24,4 @@ A set of useful tools.
 
 * 0.0.1 Initial release
 * 0.0.2 Added numberArray function
+* 0.0.3 Added friendlyDateRepresentation function

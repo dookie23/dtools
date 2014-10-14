@@ -42,6 +42,36 @@ module.exports = {
             else r.unshift(i);
         }
         return r;
+    },
+
+    /**
+    *
+    * Formats a date in a human-friendly representation
+    *
+    * @param {String} A String representing the date to format (accepts the format used in JS Date() function)
+    * return {String} A human-friendly date representation (spanish)
+    */
+    friendlyDateRepresentation: function(date) {
+        var aDay = 3600 * 1000 * 24;
+        var d = new Date(date);
+        var now = new Date();
+        var yesterday = new Date(now.getTime() - aDay);
+
+        var getTime = function(dateP) {
+            return dateP.toISOString().split("T")[1].substr(0,5);
+        };
+
+        var getDay = function(dateP) {
+            return dateP.toISOString().split("T")[0].substr(8,2) + "/" + dateP.toISOString().split("T")[0].substr(5,2);
+        }
+
+        if ((now.getTime() - d.getTime()) <= aDay) {
+            if (now.getHours() == d.getHours()) return "Hace " + (now.getMinutes() - d.getMinutes()) + " minutos";
+            else if ((now.getHours() == (d.getHours() + 1)) && (d.getMinutes() > now.getMinutes())) return "Hace " + (now.getMinutes() + (60 - d.getMinutes())) + " minutos";
+            else return "Hace " + (now.getHours() - d.getHours()) + " hora";
+        }
+        else if (yesterday.getDate() == d.getDate()) return "Ayer, a las "+getTime(d);
+        else return getDay(d)+ " a las " + getTime(d);
     }
 
 

@@ -50,3 +50,41 @@ describe('numberArray', function() {
     out.length.should.equal(100);
   });
 });
+
+describe('friendlyDateRepresentation', function() {
+  it('today - minutes', function() {
+    var d1 = new Date();
+    var d2 = new Date(d1.getTime() - (60*1000*30));
+    out = dtools.friendlyDateRepresentation(d2.toISOString());
+    out.should.contain("Hace 30 minutos");
+  });
+
+  it('today - hours', function() {
+    var d1 = new Date();
+    var d2 = new Date(d1.getTime() - (60*1000*70));
+    out = dtools.friendlyDateRepresentation(d2.toISOString());
+    out.should.contain("Hace 1 hora");
+  });
+
+  it('yesterday', function() {
+    out = dtools.friendlyDateRepresentation(new Date(new Date().getTime() - 3600 * 1000 * 24).toString());
+    out.should.contain("Ayer");
+  });
+
+  it('yesterday (negation)', function() {
+    out = dtools.friendlyDateRepresentation(new Date(new Date().getTime() - 3600 * 1000 * 24 * 3).toString());
+    out.should.not.contain("Ayer");
+  });
+
+  it('a day', function() {
+    out = dtools.friendlyDateRepresentation("2001-01-10");
+    out.should.contain("10/01 a las 00:00");
+  });
+
+  it('other day', function() {
+    out = dtools.friendlyDateRepresentation("2001-01-24T23:15:00.000Z");
+    out.should.contain("24/01 a las 23:15");
+  });
+
+});
+
