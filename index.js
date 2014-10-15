@@ -81,11 +81,15 @@ module.exports = {
         }
 
         if ((now.getTime() - d.getTime()) <= aDay) {
-            if (now.getHours() == d.getHours()) return "Hace " + (now.getMinutes() - d.getMinutes()) + " minutos";
+            if (now.getHours() == d.getHours()) {
+                var diff = now.getMinutes() - d.getMinutes();
+                if (diff > 1) return "Hace " + diff + " minutos";
+                else return "Hace " + diff + " minuto";
+            }
             else if ((now.getHours() == (d.getHours() + 1)) && (d.getMinutes() > now.getMinutes())) return "Hace " + (now.getMinutes() + (60 - d.getMinutes())) + " minutos";
             else {
                 var diff = now.getHours() - d.getHours();
-                if (diff > 1) return "Hace " + diff + "horas"
+                if (diff > 1) return "Hace " + diff + " horas"
                 else return "Hace " + diff + " hora";
             }
         }

@@ -1,6 +1,6 @@
 {
   "name": "dookie-tools",
-  "version": "0.0.3a",
+  "version": "0.0.3b",
   "description": "A set of tools to use in your scripts. Fast and easy!",
   "main": "index.js",
   "scripts": {
