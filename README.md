@@ -25,3 +25,4 @@ A set of useful tools.
 * 0.0.1 Initial release
 * 0.0.2 Added numberArray function
 * 0.0.3 Added friendlyDateRepresentation function
+* 0.0.3a Changes in friendlyDateRepresentation
