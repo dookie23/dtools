@@ -61,17 +61,36 @@ module.exports = {
             return dateP.toISOString().split("T")[1].substr(0,5);
         };
 
+        var getMonth = function(month) {
+            if (month == 1) return "Enero";
+            if (month == 2) return "Febrero";
+            if (month == 3) return "Marzo";
+            if (month == 4) return "Abril";
+            if (month == 5) return "Mayo";
+            if (month == 6) return "Junio";
+            if (month == 7) return "Julio";
+            if (month == 8) return "Agosto";
+            if (month == 9) return "Septiembre";
+            if (month == 10) return "Octubre";
+            if (month == 11) return "Noviembre";
+            if (month == 12) return "Diciembre";
+        };
+
         var getDay = function(dateP) {
-            return dateP.toISOString().split("T")[0].substr(8,2) + "/" + dateP.toISOString().split("T")[0].substr(5,2);
+            return dateP.toISOString().split("T")[0].substr(8,2) + " de " + getMonth(parseInt(dateP.toISOString().split("T")[0].substr(5,2)));
         }
 
         if ((now.getTime() - d.getTime()) <= aDay) {
             if (now.getHours() == d.getHours()) return "Hace " + (now.getMinutes() - d.getMinutes()) + " minutos";
             else if ((now.getHours() == (d.getHours() + 1)) && (d.getMinutes() > now.getMinutes())) return "Hace " + (now.getMinutes() + (60 - d.getMinutes())) + " minutos";
-            else return "Hace " + (now.getHours() - d.getHours()) + " hora";
+            else {
+                var diff = now.getHours() - d.getHours();
+                if (diff > 1) return "Hace " + diff + "horas"
+                else return "Hace " + diff + " hora";
+            }
         }
         else if (yesterday.getDate() == d.getDate()) return "Ayer, a las "+getTime(d);
-        else return getDay(d)+ " a las " + getTime(d);
+        else return getDay(d);
     }
 
 

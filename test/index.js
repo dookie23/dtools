@@ -78,12 +78,12 @@ describe('friendlyDateRepresentation', function() {
 
   it('a day', function() {
     out = dtools.friendlyDateRepresentation("2001-01-10");
-    out.should.contain("10/01 a las 00:00");
+    out.should.contain("10 de Enero");
   });
 
   it('other day', function() {
     out = dtools.friendlyDateRepresentation("2001-01-24T23:15:00.000Z");
-    out.should.contain("24/01 a las 23:15");
+    out.should.contain("24 de Enero");
   });
 
 });
