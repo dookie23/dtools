@@ -26,17 +26,17 @@ module.exports = {
     },
 
     /**
-    *
-    * Generates an array with consecutive numbers from start to start+n-1
-    *
-    * @param {Integer} start The first item of the array
-    * @param {Integer} n Array length
-    * @param {Boolean} desc Descendent direction
-    * return {Array} An array with number items from start to start+n-1. If desc == true, the array will be sort in descendent order.
-    */
+     *
+     * Generates an array with consecutive numbers from start to start+n-1
+     *
+     * @param {Integer} start The first item of the array
+     * @param {Integer} n Array length
+     * @param {Boolean} desc Descendent direction
+     * return {Array} An array with number items from start to start+n-1. If desc == true, the array will be sort in descendent order.
+     */
     numberArray: function(start, n, desc) {
         var r = [];
-        for (var i=start;i<start+n;i++) {
+        for (var i = start; i < start + n; i++) {
             if (!desc) r.push(i);
             else r.unshift(i);
         }
@@ -44,12 +44,12 @@ module.exports = {
     },
 
     /**
-    *
-    * Formats a date in a human-friendly representation
-    *
-    * @param {String} date A String representing the date to format (accepts the format used in JS Date() function)
-    * return {String} A human-friendly date representation (spanish)
-    */
+     *
+     * Formats a date in a human-friendly representation
+     *
+     * @param {String} date A String representing the date to format (accepts the format used in JS Date() function)
+     * return {String} A human-friendly date representation (spanish)
+     */
     friendlyDateRepresentation: function(date) {
         var aDay = 3600 * 1000 * 24;
         var d = new Date(date);
@@ -57,7 +57,7 @@ module.exports = {
         var yesterday = new Date(now.getTime() - aDay);
 
         var getTime = function(dateP) {
-            return dateP.toISOString().split("T")[1].substr(0,5);
+            return dateP.toISOString().split("T")[1].substr(0, 5);
         };
 
         var getMonth = function(month) {
@@ -76,7 +76,7 @@ module.exports = {
         };
 
         var getDay = function(dateP) {
-            return dateP.toISOString().split("T")[0].substr(8,2) + " de " + getMonth(parseInt(dateP.toISOString().split("T")[0].substr(5,2)));
+            return dateP.toISOString().split("T")[0].substr(8, 2) + " de " + getMonth(parseInt(dateP.toISOString().split("T")[0].substr(5, 2)));
         }
 
         if ((now.getTime() - d.getTime()) <= aDay) {
@@ -84,17 +84,50 @@ module.exports = {
                 var diff = now.getMinutes() - d.getMinutes();
                 if (diff > 1) return "Hace " + diff + " minutos";
                 else return "Hace " + diff + " minuto";
-            }
-            else if ((now.getHours() == (d.getHours() + 1)) && (d.getMinutes() > now.getMinutes())) return "Hace " + (now.getMinutes() + (60 - d.getMinutes())) + " minutos";
+            } else if ((now.getHours() == (d.getHours() + 1)) && (d.getMinutes() > now.getMinutes())) return "Hace " + (now.getMinutes() + (60 - d.getMinutes())) + " minutos";
             else {
                 var diff = now.getHours() - d.getHours();
                 if (diff > 1) return "Hace " + diff + " horas"
                 else return "Hace " + diff + " hora";
             }
-        }
-        else if (yesterday.getDate() == d.getDate()) return "Ayer, a las "+getTime(d);
+        } else if (yesterday.getDate() == d.getDate()) return "Ayer, a las " + getTime(d);
         else return getDay(d);
-    }
+    },
+
+    /**
+     * Replace substrings in JSON keys
+     *
+     * @param {Object} obj JSON to change
+     * @param {String} searchvalue The value, or regular expression, that will be replaced by the new value
+     * @param {String} newvalue The value to replace the searchvalue with
+     * @param {boolean} recursive If true, the replace is excuted in a recursive way, else only first-level keys will be replaced
+     * @return {Object} A new JSON Object, where the specified key(s) has been replaced by the new value
+     */
+    jsonKeyCharReplacing: function(obj, searchvalue, newvalue, recursive) {
+
+        if (recursive == undefined) recursive = true;
+
+        if (obj instanceof Array) {
+            for (var i =0; i<obj.length; i++) {
+                obj[i] = this.jsonKeyCharReplacing(obj[i], searchvalue, newvalue, recursive);
+            }
+        }
+        else {
+            for (var key in obj) {
+
+                if (obj.hasOwnProperty(key)) {
+                    var newKey = key.replace(searchvalue, newvalue);
+                    if (newKey !== key) {
+                        if (recursive) obj[newKey] = this.jsonKeyCharReplacing(obj[key], searchvalue, newvalue, recursive);
+                        else obj[newKey] = obj[key];
+                        delete(obj[key]);
+                    }
+                }
+            }
+        } 
+
+        return obj;
+    },
 
 
 }

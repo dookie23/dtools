@@ -15,6 +15,7 @@ A set of useful tools.
 	dtools.completeZerosLeft(2,4);
 	dtools.numberArray(2013,3,true);
 	dtools.friendlyDateRepresentation("2014-10-23");
+	dtools.jsonKeyCharReplacing(inputJSON, searchValue, newValue, true);
 
 ## Tests
 
@@ -26,4 +27,5 @@ A set of useful tools.
 * 0.0.2 Added numberArray function
 * 0.0.3 Added friendlyDateRepresentation function
 ** 0.0.3a Changes in friendlyDateRepresentation
-** 0.0.3a Changes in friendlyDateRepresentation
+* 0.0.4 Added jsonKeyCharReplacing function
+
