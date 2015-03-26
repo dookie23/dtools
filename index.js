@@ -1,11 +1,10 @@
 module.exports = {
 
-
     /**
      * Complete a number with zeros in the left
      *
-     * @param  {Integer} Number to complete
-     * @param {Integer} Length of the return string
+     * @param  {Integer} number Number to complete
+     * @param {Integer} desiredLength Length of the return string
      * @return {String} String completed with zeros on the left
      */
     completeZerosLeft: function(number, desiredLength) {
@@ -18,8 +17,8 @@ module.exports = {
     /**
      * Generates a random integer in the inout range
      *
-     * @param {Integer} Min. value
-     * @param {Integer} Max. value
+     * @param {Integer} min Min. value
+     * @param {Integer} max Max. value
      * @return {Integer} An integer from min to max
      */
     randomInt: function(min, max) {
@@ -30,9 +29,9 @@ module.exports = {
     *
     * Generates an array with consecutive numbers from start to start+n-1
     *
-    * @param {Integer} The first item of the array
-    * @param {Integer} Array length
-    * @param {Boolean} Descendent direction
+    * @param {Integer} start The first item of the array
+    * @param {Integer} n Array length
+    * @param {Boolean} desc Descendent direction
     * return {Array} An array with number items from start to start+n-1. If desc == true, the array will be sort in descendent order.
     */
     numberArray: function(start, n, desc) {
@@ -48,7 +47,7 @@ module.exports = {
     *
     * Formats a date in a human-friendly representation
     *
-    * @param {String} A String representing the date to format (accepts the format used in JS Date() function)
+    * @param {String} date A String representing the date to format (accepts the format used in JS Date() function)
     * return {String} A human-friendly date representation (spanish)
     */
     friendlyDateRepresentation: function(date) {
