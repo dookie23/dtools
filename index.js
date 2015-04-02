@@ -108,11 +108,10 @@ module.exports = {
         if (recursive == undefined) recursive = true;
 
         if (obj instanceof Array) {
-            for (var i =0; i<obj.length; i++) {
+            for (var i = 0; i < obj.length; i++) {
                 obj[i] = this.jsonKeyCharReplacing(obj[i], searchvalue, newvalue, recursive);
             }
-        }
-        else {
+        } else {
             for (var key in obj) {
 
                 if (obj.hasOwnProperty(key)) {
@@ -124,10 +123,25 @@ module.exports = {
                     }
                 }
             }
-        } 
+        }
 
         return obj;
     },
 
+    /**
+    * Remove 'blank elements' in a string array
+    *
+    * @param {String} stringArray An array of string
+    * @return {Array} An array without 'blank elements'
+    */
+    cleanArray: function(stringArray) {
+        var x = [];
+
+        for (var i = 0; i < stringArray.length; i++) {
+            if (stringArray[i].length > 0) x.push(stringArray[i]);
+        }
+
+        return x;
+    }
 
 }

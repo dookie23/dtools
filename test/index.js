@@ -93,7 +93,7 @@ describe('jsonKeyCharReplacing', function() {
 
     var testJSON = {};
 
-    beforeEach(function() {
+    beforeEach(function(done) {
         testJSON = {
             "test.con": [],
             "test2.con": {
@@ -104,6 +104,7 @@ describe('jsonKeyCharReplacing', function() {
             },
             "test6.con": "hi."
         };
+        done();
     });
 
 
@@ -118,4 +119,25 @@ describe('jsonKeyCharReplacing', function() {
         out.test2_con["test5_con"].should.be.equal("hello.man");
         out.test2_con.test3_con[0]["test4_con"].should.be.equal("hello");
     });
+});
+
+
+
+describe('cleanArray', function() {
+
+    var testArray = [];
+
+    beforeEach(function(done) {
+        testArray = ['Local','','','Visitante','','','',];
+        done();
+    });
+
+
+    it('clean array', function() {
+        out = dtools.cleanArray(testArray);
+        out.length.should.be.equal(2);
+        out[0].should.be.equal("Local");
+        out[1].should.be.equal("Visitante");
+    });
+
 });
