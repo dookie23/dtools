@@ -133,11 +133,47 @@ describe('cleanArray', function() {
     });
 
 
-    it('clean array', function() {
+    it('clean array basic', function() {
         out = dtools.cleanArray(testArray);
         out.length.should.be.equal(2);
         out[0].should.be.equal("Local");
         out[1].should.be.equal("Visitante");
     });
+
+        it('clean array custom blank element', function() {
+        out = dtools.cleanArray(testArray, 'Local');
+        out.length.should.be.equal(1);
+        out[0].should.be.equal("Visitante");
+    });
+
+});
+
+
+
+
+describe('findStringInArray', function() {
+
+    var testArray = [];
+
+    beforeEach(function(done) {
+        testArray = ['Local','','','Visitante y más','','','',];
+        done();
+    });
+
+
+    it('findStringInArray (no stricted)', function() {
+        out = dtools.findStringInArray("Visitante", testArray, false);
+        out.should.be.equal(true);
+        out = dtools.findStringInArray("Local", testArray, false);
+        out.should.be.equal(true);
+    });
+
+    it('findStringInArray (stricted)', function() {
+        out = dtools.findStringInArray("Visitante", testArray, true);
+        out.should.be.equal(false);
+        out = dtools.findStringInArray("Local", testArray, true);
+        out.should.be.equal(true);
+    });
+
 
 });

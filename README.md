@@ -17,6 +17,7 @@ A set of useful tools.
 	dtools.friendlyDateRepresentation("2014-10-23");
 	dtools.jsonKeyCharReplacing(inputJSON, searchValue, newValue, true);
 	dtools.cleanArray(inputArray);
+	dtools.finStringInArray(searchString, inputArray, true);
 
 ## Tests
 
@@ -30,4 +31,5 @@ A set of useful tools.
 ** 0.0.3a Changes in friendlyDateRepresentation
 * 0.0.4 Added jsonKeyCharReplacing function
 * 0.0.5 Added cleanArray function
+* 0.0.6 Added findStringInArray function
 

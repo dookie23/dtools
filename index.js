@@ -3,9 +3,9 @@ module.exports = {
     /**
      * Complete a number with zeros in the left
      *
-     * @param  {Integer} number Number to complete
-     * @param {Integer} desiredLength Length of the return string
-     * @return {String} String completed with zeros on the left
+     * @param  {number} number Number to complete
+     * @param {number} desiredLength Length of the return string
+     * @return {string} String completed with zeros on the left
      */
     completeZerosLeft: function(number, desiredLength) {
         var numberStr = number + "";
@@ -17,9 +17,9 @@ module.exports = {
     /**
      * Generates a random integer in the inout range
      *
-     * @param {Integer} min Min. value
-     * @param {Integer} max Max. value
-     * @return {Integer} An integer from min to max
+     * @param {number} min Min. value
+     * @param {number} max Max. value
+     * @return {number} An integer from min to max
      */
     randomInt: function(min, max) {
         return min + Math.round(Math.random() * (max - min));
@@ -29,10 +29,10 @@ module.exports = {
      *
      * Generates an array with consecutive numbers from start to start+n-1
      *
-     * @param {Integer} start The first item of the array
-     * @param {Integer} n Array length
+     * @param {number} start The first item of the array
+     * @param {number} n Array length
      * @param {Boolean} desc Descendent direction
-     * return {Array} An array with number items from start to start+n-1. If desc == true, the array will be sort in descendent order.
+     * return {Array.<number>} An array with number items from start to start+n-1. If desc == true, the array will be sort in descendent order.
      */
     numberArray: function(start, n, desc) {
         var r = [];
@@ -47,8 +47,8 @@ module.exports = {
      *
      * Formats a date in a human-friendly representation
      *
-     * @param {String} date A String representing the date to format (accepts the format used in JS Date() function)
-     * return {String} A human-friendly date representation (spanish)
+     * @param {string} date A String representing the date to format (accepts the format used in JS Date() function)
+     * return {string} A human-friendly date representation (spanish)
      */
     friendlyDateRepresentation: function(date) {
         var aDay = 3600 * 1000 * 24;
@@ -87,6 +87,7 @@ module.exports = {
             } else if ((now.getHours() == (d.getHours() + 1)) && (d.getMinutes() > now.getMinutes())) return "Hace " + (now.getMinutes() + (60 - d.getMinutes())) + " minutos";
             else {
                 var diff = now.getHours() - d.getHours();
+                if (diff < 1) diff = 24 + diff; 
                 if (diff > 1) return "Hace " + diff + " horas"
                 else return "Hace " + diff + " hora";
             }
@@ -98,26 +99,26 @@ module.exports = {
      * Replace substrings in JSON keys
      *
      * @param {Object} obj JSON to change
-     * @param {String} searchvalue The value, or regular expression, that will be replaced by the new value
-     * @param {String} newvalue The value to replace the searchvalue with
+     * @param {string} searchValue The value, or regular expression, that will be replaced by the new value
+     * @param {string} newValue The value to replace the searchvalue with
      * @param {boolean} recursive If true, the replace is excuted in a recursive way, else only first-level keys will be replaced
      * @return {Object} A new JSON Object, where the specified key(s) has been replaced by the new value
      */
-    jsonKeyCharReplacing: function(obj, searchvalue, newvalue, recursive) {
+    jsonKeyCharReplacing: function(obj, searchValue, newValue, recursive) {
 
         if (recursive == undefined) recursive = true;
 
         if (obj instanceof Array) {
             for (var i = 0; i < obj.length; i++) {
-                obj[i] = this.jsonKeyCharReplacing(obj[i], searchvalue, newvalue, recursive);
+                obj[i] = this.jsonKeyCharReplacing(obj[i], searchValue, newValue, recursive);
             }
         } else {
             for (var key in obj) {
 
                 if (obj.hasOwnProperty(key)) {
-                    var newKey = key.replace(searchvalue, newvalue);
+                    var newKey = key.replace(searchValue, newValue);
                     if (newKey !== key) {
-                        if (recursive) obj[newKey] = this.jsonKeyCharReplacing(obj[key], searchvalue, newvalue, recursive);
+                        if (recursive) obj[newKey] = this.jsonKeyCharReplacing(obj[key], searchValue, newValue, recursive);
                         else obj[newKey] = obj[key];
                         delete(obj[key]);
                     }
@@ -131,17 +132,38 @@ module.exports = {
     /**
     * Remove 'blank elements' in a string array
     *
-    * @param {String} stringArray An array of string
-    * @return {Array} An array without 'blank elements'
+    * @param {string} stringArray An array of string
+    * @param {string=} blankString An string as blank element
+    * @return {Array.<string>} An array without 'blank elements'
     */
-    cleanArray: function(stringArray) {
+    cleanArray: function(stringArray, blankString) {
         var x = [];
+        if (!blankString) blankString = '';
 
         for (var i = 0; i < stringArray.length; i++) {
-            if (stringArray[i].length > 0) x.push(stringArray[i]);
+            if (stringArray[i].replace(blankString,'').length > 0) x.push(stringArray[i]);
         }
 
         return x;
+    },
+
+
+    /**
+    * Look for one string in one string array
+    *
+    * @param {string} searchString String to find
+    * @param {Array.<string>} stringArray String array to iterate
+    * @param {boolean} stricted If true, the string must be equal one array element.
+    *  If false, the string must be included in one array element
+    * @return {boolean} True if the input string is included 
+    */
+    findStringInArray: function(searchString, stringArray, stricted) {
+        for (var i=0; i<stringArray.length; i++) {
+            if (stringArray[i].indexOf(searchString) != -1) 
+                if (!stricted) return true;
+                else if (stringArray[i].length === searchString.length) return true;
+        }
+        return false;
     }
 
 }
