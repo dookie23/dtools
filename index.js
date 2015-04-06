@@ -116,7 +116,8 @@ module.exports = {
             for (var key in obj) {
 
                 if (obj.hasOwnProperty(key)) {
-                    var newKey = key.replace(searchValue, newValue);
+                    var regexp = new RegExp(searchValue, 'g');
+                    var newKey = key.replace(regexp, newValue);
                     if (recursive && (typeof obj[key] == 'object')) obj[newKey] = this.jsonKeyCharReplacing(obj[key], searchValue, newValue, recursive);
                     if (newKey !== key) {
                         obj[newKey] = obj[key];
