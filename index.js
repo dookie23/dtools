@@ -117,9 +117,9 @@ module.exports = {
 
                 if (obj.hasOwnProperty(key)) {
                     var newKey = key.replace(searchValue, newValue);
+                    if (recursive && (typeof obj[key] == 'object')) obj[newKey] = this.jsonKeyCharReplacing(obj[key], searchValue, newValue, recursive);
                     if (newKey !== key) {
-                        if (recursive) obj[newKey] = this.jsonKeyCharReplacing(obj[key], searchValue, newValue, recursive);
-                        else obj[newKey] = obj[key];
+                        obj[newKey] = obj[key];
                         delete(obj[key]);
                     }
                 }

@@ -102,7 +102,13 @@ describe('jsonKeyCharReplacing', function() {
                 }],
                 "test5.con": "hello.man"
             },
-            "test6.con": "hi."
+            "test6.con": "hi.",
+            "test7con": {
+                "test8con": [{
+                    "test9.con": "hello"
+                }],
+                "test10.con": "hello.man"
+            }
         };
         done();
     });
@@ -118,6 +124,8 @@ describe('jsonKeyCharReplacing', function() {
         out = dtools.jsonKeyCharReplacing(testJSON, ".", "_", true);
         out.test2_con["test5_con"].should.be.equal("hello.man");
         out.test2_con.test3_con[0]["test4_con"].should.be.equal("hello");
+        out.test7con.test8con[0]["test9_con"].should.be.equal("hello");
+        out.test7con.test10_con.should.be.equal("hello.man");
     });
 });
 
