@@ -61,7 +61,7 @@ describe('friendlyDateRepresentation', function() {
 
     it('today - hours', function() {
         var d1 = new Date();
-        var d2 = new Date(d1.getTime() - (60 * 1000 * 70));
+        var d2 = new Date(d1.getTime() - (60 * 1000 * 60));
         out = dtools.friendlyDateRepresentation(d2.toISOString());
         out.should.contain("Hace 1 hora");
     });
