@@ -1,0 +1,28 @@
+{
+    "name": "dookie-tools",
+    "version": "0.0.7",
+    "description": "A set of tools to use in your scripts. Fast and easy!",
+    "main": "dtools.js",
+    "ignore": [
+        "Makefile",
+        "package.json",
+        "node_modules",
+        "test"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dookie23/dtools.git"
+    },
+    "keywords": [
+        "swissknife",
+        "all-in-one",
+        "array utils",
+        "json utils"
+    ],
+    "author": "Agustín Cañas <agustincanas@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/dookie23/dtools/issues"
+    },
+    "homepage": "https://github.com/dookie23/dtools",
+}

@@ -9,7 +9,15 @@ A set of useful tools.
 
 ## Usage
 	
+	### Backend import (node.js module)
+
 	var dtools = require('dookie-tools');
+
+	### Frontend import (client library)
+
+	<script src='../../bower_components/dtools/dtools.js')><script>
+
+	### Usage
 
 	dtools.randomInt(1,14);
 	dtools.completeZerosLeft(2,4);
@@ -18,6 +26,7 @@ A set of useful tools.
 	dtools.jsonKeyCharReplacing(inputJSON, searchValue, newValue, true);
 	dtools.cleanArray(inputArray);
 	dtools.findStringInArray(searchString, inputArray, true);
+
 
 ## Tests
 
@@ -32,4 +41,5 @@ A set of useful tools.
 * 0.0.4 Added jsonKeyCharReplacing function
 * 0.0.5 Added cleanArray function
 * 0.0.6 Added findStringInArray function
+* 0.0.7 Client support
 

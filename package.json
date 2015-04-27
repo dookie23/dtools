@@ -1,8 +1,8 @@
 {
   "name": "dookie-tools",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A set of tools to use in your scripts. Fast and easy!",
-  "main": "index.js",
+  "main": "dtools.js",
   "scripts": {
     "test": "make test"
   },
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "swissknife",
-    "all-in-one"
+    "all-in-one",
+    "array utils",
+    "json utils"
   ],
   "author": "Agustín Cañas <agustincanas@gmail.com>",
   "license": "MIT",

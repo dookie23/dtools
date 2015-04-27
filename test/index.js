@@ -1,5 +1,5 @@
 var should = require('chai').should(),
-    dtools = require('../index');
+    dtools = require('../dtools');
 
 describe('#completeZerosLeft', function() {
     it('converts 2 in 4 characters string', function() {
