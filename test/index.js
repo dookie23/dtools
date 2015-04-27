@@ -61,7 +61,7 @@ describe('friendlyDateRepresentation', function() {
 
     it('today - hours', function() {
         var d1 = new Date();
-        var d2 = new Date(d1.getTime() - (60 * 1000 * 70));
+        var d2 = new Date(d1.getTime() - (60 * 1000 * 60));
         out = dtools.friendlyDateRepresentation(d2.toISOString());
         out.should.contain("Hace 1 hora");
     });
@@ -102,22 +102,30 @@ describe('jsonKeyCharReplacing', function() {
                 }],
                 "test5.con": "hello.man"
             },
-            "test6.con": "hi."
+            "test6.con": "hi.",
+            "test7con": {
+                "test8con": [{
+                    "test9.con": "hello"
+                }],
+                "test.10.con": "hello.man"
+            }
         };
         done();
     });
 
 
     it('replace - first level keys', function() {
-        out = dtools.jsonKeyCharReplacing(testJSON, ".", "_", false);
+        out = dtools.jsonKeyCharReplacing(testJSON, "\\.", "_", false);
         out.test2_con["test5.con"].should.be.equal("hello.man");
         out.test6_con.should.be.equal("hi.");
     });
 
     it('replace - all keys', function() {
-        out = dtools.jsonKeyCharReplacing(testJSON, ".", "_", true);
+        out = dtools.jsonKeyCharReplacing(testJSON, "\\.", "_", true);
         out.test2_con["test5_con"].should.be.equal("hello.man");
         out.test2_con.test3_con[0]["test4_con"].should.be.equal("hello");
+        out.test7con.test8con[0]["test9_con"].should.be.equal("hello");
+        out.test7con.test_10_con.should.be.equal("hello.man");
     });
 });
 
