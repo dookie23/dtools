@@ -1,6 +1,6 @@
 {
     "name": "dookie-tools",
-    "version": "0.0.7b",
+    "version": "0.0.7d",
     "description": "A set of tools to use in your scripts. Fast and easy!",
     "main": "dtools.js",
     "ignore": [
@@ -9,10 +9,6 @@
         "node_modules",
         "test"
     ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dookie23/dtools.git"
-    },
     "keywords": [
         "swissknife",
         "all-in-one",
