@@ -15,7 +15,7 @@ A set of useful tools.
 
 	### Frontend import (client library)
 
-	<script src='../../bower_components/dtools/dtools.js')><script>
+	<script src='../../bower_components/dtools/dtools.js'><script>
 
 	### Usage
 
