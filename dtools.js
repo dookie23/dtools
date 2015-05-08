@@ -107,28 +107,27 @@ var dtools = {};
          * @return {Object} A new JSON Object, where the specified key(s) has been replaced by the new value
          */
         exports.jsonKeyCharReplacing = function(obj, searchValue, newValue, recursive) {
-
             if (recursive == undefined) recursive = true;
 
-            if (obj instanceof Array) {
-                for (var i = 0; i < obj.length; i++) {
-                    obj[i] = exports.jsonKeyCharReplacing(obj[i], searchValue, newValue, recursive);
-                }
-            } else {
-                for (var key in obj) {
+            var newObj = obj;
 
-                    if (obj.hasOwnProperty(key)) {
-                        var newKey = key.replace(searchValue, newValue);
-                        if (newKey !== key) {
-                            if (recursive) obj[newKey] = exports.jsonKeyCharReplacing(obj[key], searchValue, newValue, recursive);
-                            else obj[newKey] = obj[key];
-                            delete(obj[key]);
-                        }
-                    }
+            if (obj instanceof Array) {
+                newObj = [];
+                for (var i = 0; i < obj.length; i++) {
+                    newObj[i] = exports.jsonKeyCharReplacing(obj[i], searchValue, newValue, recursive);
+                }
+            } else if (obj instanceof Object) {
+                newObj = {};
+                for (var key in obj) {
+                    var newKey = '' + key.split(searchValue).join(newValue) + '';
+                    if (recursive) newObj[newKey] = exports.jsonKeyCharReplacing(obj[key], searchValue, newValue, recursive);
+                    else newObj[newKey] = obj[key];
                 }
             }
 
-            return obj;
+            return newObj;
+
+
         },
 
         /**
