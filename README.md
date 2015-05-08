@@ -42,4 +42,5 @@ A set of useful tools.
 * 0.0.5 Added cleanArray function
 * 0.0.6 Added findStringInArray function
 * 0.0.7 Client support
-
+* 0.1.1 Frontend-Backend version
+* 0.1.2 Fixed issues in jsonKeyCharReplacing
