@@ -92,6 +92,7 @@ describe('friendlyDateRepresentation', function() {
 describe('jsonKeyCharReplacing', function() {
 
     var testJSON = {};
+    var testJSON2 = {};
 
     beforeEach(function(done) {
         testJSON = {
@@ -110,6 +111,16 @@ describe('jsonKeyCharReplacing', function() {
                 "test.10.con": "hello.man"
             }
         };
+
+        testJSON2 = {
+            result: {
+                response: '2',
+                extensions: {
+                    'http://test.com/selected': '2'
+                }
+            },
+        };
+
         done();
     });
 
@@ -127,6 +138,13 @@ describe('jsonKeyCharReplacing', function() {
         out.test7con.test8con[0]["test9_con"].should.be.equal("hello");
         out.test7con.test_10_con.should.be.equal("hello.man");
     });
+
+    it('replace - all keys', function() {
+        out = dtools.jsonKeyCharReplacing(testJSON2, "\.", "_", true);
+        console.log(out);
+        out.result.extensions['http://test_com/selected'].should.be.equal('2');
+
+    });
 });
 
 
@@ -136,7 +154,7 @@ describe('cleanArray', function() {
     var testArray = [];
 
     beforeEach(function(done) {
-        testArray = ['Local','','','Visitante','','','',];
+        testArray = ['Local', '', '', 'Visitante', '', '', '', ];
         done();
     });
 
@@ -148,7 +166,7 @@ describe('cleanArray', function() {
         out[1].should.be.equal("Visitante");
     });
 
-        it('clean array custom blank element', function() {
+    it('clean array custom blank element', function() {
         out = dtools.cleanArray(testArray, 'Local');
         out.length.should.be.equal(1);
         out[0].should.be.equal("Visitante");
@@ -164,7 +182,7 @@ describe('findStringInArray', function() {
     var testArray = [];
 
     beforeEach(function(done) {
-        testArray = ['Local','','','Visitante y más','','','',];
+        testArray = ['Local', '', '', 'Visitante y más', '', '', '', ];
         done();
     });
 
