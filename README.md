@@ -26,6 +26,8 @@ A set of useful tools.
 	dtools.jsonKeyCharReplacing(inputJSON, searchValue, newValue, true);
 	dtools.cleanArray(inputArray);
 	dtools.findStringInArray(searchString, inputArray, true);
+	dtools.milisecondsToTime(miliseconds);
+	dtools.iso8601DurationtoMilliseconds(iso8601);
 
 
 ## Tests
