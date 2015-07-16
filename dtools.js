@@ -189,8 +189,9 @@ var dtools = {};
 
   /**
    * Transforms miliseconds into time with format "hours minutes seconds"
+   *
    * @param  {Integer} miliseconds Time in miliseconds
-   * @return {String}             Time formated to string
+   * @return {String}              Time formated to string
    */
   exports.milisecondsToTime = function(miliseconds) {
     var hours = parseInt(((miliseconds / 60000) / 60).toFixed(0));
@@ -204,5 +205,29 @@ var dtools = {};
 
     return result;
   };
+
+  /**
+   * Transforms an iso8601 duration value into milliseconds
+   *
+   * @param  {String} iso8601 Duration time in iso8601 format
+   * @return {Integer}        Duration in milliseconds
+   */
+  exports.iso8601DurationtoMilliseconds = function(iso8601) {
+    var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
+    var hours = 0;
+    var minutes = 0;
+    var seconds = 0;
+    var totalseconds;
+
+    if (reptms.test(iso8601)) {
+      var matches = reptms.exec(iso8601);
+      if (matches[1]) hours = Number(matches[1]);
+      if (matches[2]) minutes = Number(matches[2]);
+      if (matches[3]) seconds = Number(matches[3]);
+      totalseconds = (hours * 3600 + minutes * 60 + seconds) * 1000;
+    }
+
+    return totalseconds;
+  }
 
 }(typeof exports === 'undefined' ? this.dtools = {} : exports));
