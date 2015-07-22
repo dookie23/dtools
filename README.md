@@ -28,6 +28,13 @@ A set of useful tools.
 	dtools.findStringInArray(searchString, inputArray, true);
 	dtools.milisecondsToTime(miliseconds);
 	dtools.iso8601DurationtoMilliseconds(iso8601);
+	dtools.replaceAll(inputString, searchString, replaceString, caseSensitive);
+	dtools.isJSONObject(obj);
+	dtools.isJSONArray(array);
+	dtools.countJSONObjectProperties(obj);
+	dtools.getRandomPropertyFromJSONObject(obj);
+	dtools.plainJSONObjectToArray(obj);
+	dtools.diffArrays(mainArray, secondaryArray, n)
 
 
 ## Tests
@@ -46,3 +53,4 @@ A set of useful tools.
 * 0.0.7 Client support
 * 0.1.1 Frontend-Backend version
 * 0.1.2 Fixed issues in jsonKeyCharReplacing
+* 0.1.3 Added iso8601DurationtoMilliseconds, replaceAll, isJSONObject, isJSONArray, countJSONObjectProperties, getRandomPropertyFromJSONObject, plainJSONObjectToArray, diffArrays
