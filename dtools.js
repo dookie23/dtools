@@ -213,7 +213,7 @@ var dtools = {};
      * @return {Integer}        Duration in milliseconds
      */
     exports.iso8601DurationtoMilliseconds = function(iso8601) {
-        var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
+        var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(\.\d{1,2})?)S)?$/;
         var hours = 0;
         var minutes = 0;
         var seconds = 0;
